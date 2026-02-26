@@ -1,0 +1,139 @@
+
+@import "../omarchy/current/theme/waybar.css";
+
+/* ── Global ──────────────────────────────────── */
+
+* {
+  color: @foreground;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  font-family: 'JetBrainsMono Nerd Font';
+  font-size: 16px;
+}
+
+window#waybar,
+window#waybar > box,
+window#waybar > box > box {
+  background: transparent;
+}
+
+.modules-left  { margin-left: 0; }
+.modules-right { margin-right: 0; }
+
+/* ── Workspaces ──────────────────────────────── */
+
+#workspaces button {
+  min-width: 38px;
+  padding: 0;
+  margin: 0 3.5px;
+  background-color: @background;
+  border: none;
+  box-shadow: none;
+  font: inherit;
+  color: inherit;
+}
+
+#workspaces button.active * {
+  color: @active-border;
+}
+
+/* ── Module backgrounds ──────────────────────── */
+
+#cpu,
+#pulseaudio,
+#network,
+#bluetooth,
+#custom-update,
+#custom-voxtype,
+#custom-screenrecording-indicator,
+#custom-clock,
+#battery,
+#custom-expand-icon,
+#tray {
+  background-color: @background;
+}
+
+/* ── Module spacing ──────────────────────────── */
+
+#custom-omarchy {
+  margin: 0 3px 0 6px;
+}
+
+#cpu {
+  margin: 0;
+  padding: 0 7px 0 11px;
+}
+
+#network,
+#custom-expand-icon {
+  margin: 0;
+  padding: 0 7px;
+}
+
+#pulseaudio {
+  min-width: 12px;
+  margin: 0;
+  padding: 0 7px;
+}
+
+#bluetooth {
+  padding: 0 3px;
+}
+
+#custom-clock {
+  padding: 0 4px;
+}
+
+#custom-update {
+  min-width: 12px;
+  margin: 0 7.5px;
+  padding: 0 6px;
+  font-size: 10px;
+}
+
+#custom-voxtype {
+  padding: 0 6px;
+}
+
+#battery {
+  padding: 0 12px 0 7px;
+}
+
+/* ── Slanted Sides ─────────────────────────────────── */
+
+#custom-b,
+#custom-c,
+#custom-d {
+  font-size: 20;
+  color: @background;
+}
+
+/* ── Status indicators ───────────────────────── */
+
+#custom-screenrecording-indicator,
+#custom-idle-indicator,
+#custom-notification-silencing-indicator {
+  min-width: 12px;
+  font-size: 10px;
+  padding-bottom: 1px;
+}
+
+#custom-screenrecording-indicator.active,
+#custom-voxtype.recording,
+#custom-idle-indicator.active,
+#custom-notification-silencing-indicator.active {
+  color: #a55555;
+}
+
+/* ── Tooltips ────────────────────────────────── */
+
+tooltip {
+  padding: 2px;
+}
+
+/* ── Utilities ───────────────────────────────── */
+
+.hidden {
+  opacity: 0;
+}
