@@ -1,6 +1,8 @@
 
 @import "../omarchy/current/theme/waybar.css";
 
+@define-color background-alpha alpha(@background, 0.6);
+
 /* ── Global ──────────────────────────────────── */
 
 * {
@@ -27,7 +29,7 @@ window#waybar > box > box {
   min-width: 38px;
   padding: 0;
   margin: 0 3.5px;
-  background-color: @background;
+  background-color: @background-alpha;
   border: none;
   box-shadow: none;
   font: inherit;
@@ -51,7 +53,7 @@ window#waybar > box > box {
 #battery,
 #custom-expand-icon,
 #tray {
-  background-color: @background;
+  background-color: @background-alpha;
 }
 
 /* ── Module spacing ──────────────────────────── */
@@ -106,7 +108,7 @@ window#waybar > box > box {
 #custom-c,
 #custom-d {
   font-size: 20;
-  color: @background;
+  color: @background-alpha;
 }
 
 /* ── Status indicators ───────────────────────── */
