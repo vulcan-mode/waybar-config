@@ -60,6 +60,7 @@ window#waybar > box > box {
 
 #custom-omarchy {
   margin: 0 3px 0 6px;
+  color: @green;
 }
 
 #cpu {
@@ -71,6 +72,10 @@ window#waybar > box > box {
 #custom-expand-icon {
   margin: 0;
   padding: 0 7px;
+}
+
+#custom-expand-icon {
+  color: @active-border;
 }
 
 #pulseaudio {
@@ -100,6 +105,10 @@ window#waybar > box > box {
 
 #battery {
   padding: 0 12px 0 7px;
+}
+
+#battery.plugged {
+  color: @green;
 }
 
 /* ── Slanted Sides ─────────────────────────────────── */
