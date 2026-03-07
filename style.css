@@ -2,6 +2,7 @@
 @import "../omarchy/current/theme/waybar.css";
 
 @define-color background-alpha alpha(@background, 0.5);
+@define-color background-light alpha(@background, 0.25);
 
 /* ── Global ──────────────────────────────────── */
 
@@ -11,7 +12,7 @@
   border-radius: 0;
   min-height: 0;
   font-family: 'JetBrainsMono Nerd Font';
-  font-size: 16px;
+  font-size: 18px;
 }
 
 window#waybar,
@@ -21,39 +22,105 @@ window#waybar > box > box {
 }
 
 .modules-left  { margin-left: 0; }
-.modules-right { margin-right: 0; }
+.modules-right { margin-right: 0; margin-left: 0; padding-left: 0; }
 
 /* ── Workspaces ──────────────────────────────── */
 
+/* Base workspace button — invisible borders reserve layout space */
 #workspaces button {
   min-width: 38px;
   padding: 0;
   margin: 0 3.5px;
-  background-color: @background-alpha;
-  border: none;
+  background-color: transparent;
+  border-top: 2px solid transparent;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+  border-bottom: 2px solid transparent;
   box-shadow: none;
   font: inherit;
-  color: inherit;
+  color: @foreground;
 }
 
-#workspaces button.active * {
-  color: @active-border;
+/* All workspaces with windows get green text */
+#workspaces button:not(.active):not(.empty),
+#workspaces button:not(.active):not(.empty) label {
+  color: @green;
+}
+
+/* Not focused workspaces: stepped border opacity (bottom controlled by dynamic.css) */
+#workspaces button:not(.active):nth-child(1)  { border-top: 2px solid alpha(@green, 0.15); border-left: 2px solid alpha(@green, 0.15); border-right: 2px solid alpha(@green, 0.15); }
+#workspaces button:not(.active):nth-child(2)  { border-top: 2px solid alpha(@green, 0.20); border-left: 2px solid alpha(@green, 0.20); border-right: 2px solid alpha(@green, 0.20); }
+#workspaces button:not(.active):nth-child(3)  { border-top: 2px solid alpha(@green, 0.25); border-left: 2px solid alpha(@green, 0.25); border-right: 2px solid alpha(@green, 0.25); }
+#workspaces button:not(.active):nth-child(4)  { border-top: 2px solid alpha(@green, 0.30); border-left: 2px solid alpha(@green, 0.30); border-right: 2px solid alpha(@green, 0.30); }
+#workspaces button:not(.active):nth-child(5)  { border-top: 2px solid alpha(@green, 0.35); border-left: 2px solid alpha(@green, 0.35); border-right: 2px solid alpha(@green, 0.35); }
+#workspaces button:not(.active):nth-child(6)  { border-top: 2px solid alpha(@green, 0.40); border-left: 2px solid alpha(@green, 0.40); border-right: 2px solid alpha(@green, 0.40); }
+#workspaces button:not(.active):nth-child(7)  { border-top: 2px solid alpha(@green, 0.45); border-left: 2px solid alpha(@green, 0.45); border-right: 2px solid alpha(@green, 0.45); }
+#workspaces button:not(.active):nth-child(8)  { border-top: 2px solid alpha(@green, 0.50); border-left: 2px solid alpha(@green, 0.50); border-right: 2px solid alpha(@green, 0.50); }
+#workspaces button:not(.active):nth-child(9)  { border-top: 2px solid alpha(@green, 0.55); border-left: 2px solid alpha(@green, 0.55); border-right: 2px solid alpha(@green, 0.55); }
+#workspaces button:not(.active):nth-child(10) { border-top: 2px solid alpha(@green, 0.60); border-left: 2px solid alpha(@green, 0.60); border-right: 2px solid alpha(@green, 0.60); }
+
+#workspaces button:nth-child(1)  { background-image: linear-gradient(to right, alpha(@background, 0.05), alpha(@background, 0.079)); }
+#workspaces button:nth-child(2)  { background-image: linear-gradient(to right, alpha(@background, 0.079), alpha(@background, 0.108)); }
+#workspaces button:nth-child(3)  { background-image: linear-gradient(to right, alpha(@background, 0.108), alpha(@background, 0.137)); }
+#workspaces button:nth-child(4)  { background-image: linear-gradient(to right, alpha(@background, 0.137), alpha(@background, 0.166)); }
+#workspaces button:nth-child(5)  { background-image: linear-gradient(to right, alpha(@background, 0.166), alpha(@background, 0.195)); }
+#workspaces button:nth-child(6)  { background-image: linear-gradient(to right, alpha(@background, 0.195), alpha(@background, 0.224)); }
+#workspaces button:nth-child(7)  { background-image: linear-gradient(to right, alpha(@background, 0.224), alpha(@background, 0.253)); }
+#workspaces button:nth-child(8)  { background-image: linear-gradient(to right, alpha(@background, 0.253), alpha(@background, 0.282)); }
+#workspaces button:nth-child(9)  { background-image: linear-gradient(to right, alpha(@background, 0.282), alpha(@background, 0.311)); }
+#workspaces button:nth-child(10) { background-image: linear-gradient(to right, alpha(@background, 0.311), alpha(@background, 0.34)); }
+
+#workspaces button.active {
+  background-color: @background-alpha;
+  border-top: 2px solid @accent;
+  border-left: 2px solid @accent;
+  border-right: 2px solid @accent;
+  margin-top: 2px;
+  color: @green;
+}
+
+#workspaces button.active.empty {
+  border-bottom: 2px solid @accent;
+  color: @foreground;
+}
+
+#workspaces button.active.empty label {
+  color: @foreground;
+}
+
+#workspaces button.active label {
+  color: @green;
 }
 
 /* ── Module backgrounds ──────────────────────── */
+
+/* Center modules — gradient on container, modules transparent */
+window#waybar > box > .modules-center {
+  background-image: linear-gradient(to right, transparent 14px, alpha(@background, 0.47) 14px, alpha(@background, 0.53) calc(100% - 14px), transparent calc(100% - 14px));
+}
+
+#custom-update,
+#custom-voxtype,
+#custom-screenrecording-indicator,
+#custom-idle-indicator,
+#custom-notification-silencing-indicator,
+#custom-clock {
+  background-color: transparent;
+}
+
+/* Right modules — gradient on container, modules transparent */
+window#waybar > box > .modules-right {
+  background-image: linear-gradient(to right, transparent 14px, alpha(@background, 0.94) 14px, @background);
+}
 
 #cpu,
 #pulseaudio,
 #network,
 #bluetooth,
-#custom-update,
-#custom-voxtype,
-#custom-screenrecording-indicator,
-#custom-clock,
 #battery,
 #custom-expand-icon,
 #tray {
-  background-color: @background-alpha;
+  background-color: transparent;
 }
 
 /* ── Module spacing ──────────────────────────── */
@@ -75,7 +142,7 @@ window#waybar > box > box {
 }
 
 #custom-expand-icon {
-  color: @active-border;
+  color: @accent;
 }
 
 #pulseaudio {
@@ -99,8 +166,19 @@ window#waybar > box > box {
   font-size: 10px;
 }
 
+#custom-screenrecording-indicator,
+#custom-notification-silencing-indicator,
 #custom-voxtype {
-  padding: 0 6px;
+  padding: 0 9px;
+  min-width: 11px;
+}
+
+#custom-notification-silencing-indicator {
+  padding-left: 4px;
+}
+
+#custom-voxtype.idle {
+  color: transparent;
 }
 
 #battery {
@@ -113,11 +191,25 @@ window#waybar > box > box {
 
 /* ── Slanted Sides ─────────────────────────────────── */
 
-#custom-b,
-#custom-c,
+#custom-b {
+  font-size: 23px;
+  margin-top: -3px;
+  margin-bottom: -3px;
+  color: alpha(@background, 0.46);
+}
+
+#custom-c {
+  font-size: 23px;
+  margin-top: -3px;
+  margin-bottom: -3px;
+  color: alpha(@background, 0.54);
+}
+
 #custom-d {
-  font-size: 20;
-  color: @background-alpha;
+  font-size: 23px;
+  margin-top: -3px;
+  margin-bottom: -3px;
+  color: alpha(@background, 0.93);
 }
 
 /* ── Status indicators ───────────────────────── */
@@ -126,8 +218,7 @@ window#waybar > box > box {
 #custom-idle-indicator,
 #custom-notification-silencing-indicator {
   min-width: 12px;
-  font-size: 10px;
-  padding-bottom: 1px;
+  font-size: 14px;
 }
 
 #custom-screenrecording-indicator.active,
@@ -135,6 +226,14 @@ window#waybar > box > box {
 #custom-idle-indicator.active,
 #custom-notification-silencing-indicator.active {
   color: #a55555;
+}
+
+#custom-notification-silencing-indicator.enabled {
+  color: @yellow;
+}
+
+#custom-notification-silencing-indicator.active {
+  color: @red;
 }
 
 /* ── Tooltips ────────────────────────────────── */
@@ -148,3 +247,5 @@ tooltip {
 .hidden {
   opacity: 0;
 }
+
+@import "dynamic.css";
