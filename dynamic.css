@@ -1,7 +1,3 @@
 #workspaces button.active:not(.empty) {
   border-bottom: 2px solid transparent;
 }
-#workspaces button:not(.active):not(.empty),
-#workspaces button.empty:not(.active) {
-  border-bottom: 2px solid transparent;
-}

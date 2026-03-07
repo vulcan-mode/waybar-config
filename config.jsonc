@@ -91,7 +91,13 @@
     "tooltip-format-disconnected": "Disconnected",
     "interval": 3,
     "spacing": 1,
-    "on-click": "omarchy-launch-wifi"
+    "on-click": "omarchy-launch-wifi",
+    "states": {
+      "excellent": 80,
+      "good": 60,
+      "fair": 40,
+      "weak": 20
+    }
   },
   "battery": {
     "format": "{capacity}% {icon}",

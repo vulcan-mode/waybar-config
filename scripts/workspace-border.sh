@@ -24,20 +24,20 @@ compute_css() {
   active_ws=$(echo "$active_json" | jq -r '.workspace.id // empty')
 
   if [[ -z "$active_addr" || -z "$active_ws" ]]; then
-    # Focused workspace is empty — show bottom border on all
+    # Focused workspace is empty — bottom borders on all
     echo '#workspaces button.active {
   border-bottom: 2px solid @accent;
 }
-#workspaces button:not(.active):nth-child(1)  { border-bottom: 2px solid alpha(@green, 0.15); }
-#workspaces button:not(.active):nth-child(2)  { border-bottom: 2px solid alpha(@green, 0.20); }
-#workspaces button:not(.active):nth-child(3)  { border-bottom: 2px solid alpha(@green, 0.25); }
-#workspaces button:not(.active):nth-child(4)  { border-bottom: 2px solid alpha(@green, 0.30); }
-#workspaces button:not(.active):nth-child(5)  { border-bottom: 2px solid alpha(@green, 0.35); }
-#workspaces button:not(.active):nth-child(6)  { border-bottom: 2px solid alpha(@green, 0.40); }
-#workspaces button:not(.active):nth-child(7)  { border-bottom: 2px solid alpha(@green, 0.45); }
-#workspaces button:not(.active):nth-child(8)  { border-bottom: 2px solid alpha(@green, 0.50); }
-#workspaces button:not(.active):nth-child(9)  { border-bottom: 2px solid alpha(@green, 0.55); }
-#workspaces button:not(.active):nth-child(10) { border-bottom: 2px solid alpha(@green, 0.60); }'
+#workspaces button:not(.active):nth-child(1)  { border-bottom: 2px solid alpha(@color2, 0.15); }
+#workspaces button:not(.active):nth-child(2)  { border-bottom: 2px solid alpha(@color2, 0.20); }
+#workspaces button:not(.active):nth-child(3)  { border-bottom: 2px solid alpha(@color2, 0.25); }
+#workspaces button:not(.active):nth-child(4)  { border-bottom: 2px solid alpha(@color2, 0.30); }
+#workspaces button:not(.active):nth-child(5)  { border-bottom: 2px solid alpha(@color2, 0.35); }
+#workspaces button:not(.active):nth-child(6)  { border-bottom: 2px solid alpha(@color2, 0.40); }
+#workspaces button:not(.active):nth-child(7)  { border-bottom: 2px solid alpha(@color2, 0.45); }
+#workspaces button:not(.active):nth-child(8)  { border-bottom: 2px solid alpha(@color2, 0.50); }
+#workspaces button:not(.active):nth-child(9)  { border-bottom: 2px solid alpha(@color2, 0.55); }
+#workspaces button:not(.active):nth-child(10) { border-bottom: 2px solid alpha(@color2, 0.60); }'
     return
   fi
 
@@ -59,14 +59,7 @@ compute_css() {
 }'
   fi
 
-  # Focused workspace is active — no bottom border on non-focused
-  nonfocused_css='#workspaces button:not(.active):not(.empty),
-#workspaces button.empty:not(.active) {
-  border-bottom: 2px solid transparent;
-}'
-
-  echo "$active_css
-$nonfocused_css"
+  echo "$active_css"
 }
 
 update_css() {
