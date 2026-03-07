@@ -24,20 +24,20 @@ compute_css() {
   active_ws=$(echo "$active_json" | jq -r '.workspace.id // empty')
 
   if [[ -z "$active_addr" || -z "$active_ws" ]]; then
-    # Focused workspace is empty — bottom borders on all
+    # Focused workspace is empty — use box-shadow for visible bottom line (no miters)
     echo '#workspaces button.active {
-  border-bottom: 2px solid @accent;
+  box-shadow: inset 0 -2px 0 0 @accent;
 }
-#workspaces button:not(.active):nth-child(1)  { border-bottom: 2px solid alpha(@color2, 0.15); }
-#workspaces button:not(.active):nth-child(2)  { border-bottom: 2px solid alpha(@color2, 0.20); }
-#workspaces button:not(.active):nth-child(3)  { border-bottom: 2px solid alpha(@color2, 0.25); }
-#workspaces button:not(.active):nth-child(4)  { border-bottom: 2px solid alpha(@color2, 0.30); }
-#workspaces button:not(.active):nth-child(5)  { border-bottom: 2px solid alpha(@color2, 0.35); }
-#workspaces button:not(.active):nth-child(6)  { border-bottom: 2px solid alpha(@color2, 0.40); }
-#workspaces button:not(.active):nth-child(7)  { border-bottom: 2px solid alpha(@color2, 0.45); }
-#workspaces button:not(.active):nth-child(8)  { border-bottom: 2px solid alpha(@color2, 0.50); }
-#workspaces button:not(.active):nth-child(9)  { border-bottom: 2px solid alpha(@color2, 0.55); }
-#workspaces button:not(.active):nth-child(10) { border-bottom: 2px solid alpha(@color2, 0.60); }'
+#workspaces button:not(.active):nth-child(1)  { box-shadow: inset 0 -2px 0 0 alpha(@color2, 0.15); }
+#workspaces button:not(.active):nth-child(2)  { box-shadow: inset 0 -2px 0 0 alpha(@color2, 0.20); }
+#workspaces button:not(.active):nth-child(3)  { box-shadow: inset 0 -2px 0 0 alpha(@color2, 0.25); }
+#workspaces button:not(.active):nth-child(4)  { box-shadow: inset 0 -2px 0 0 alpha(@color2, 0.30); }
+#workspaces button:not(.active):nth-child(5)  { box-shadow: inset 0 -2px 0 0 alpha(@color2, 0.35); }
+#workspaces button:not(.active):nth-child(6)  { box-shadow: inset 0 -2px 0 0 alpha(@color2, 0.40); }
+#workspaces button:not(.active):nth-child(7)  { box-shadow: inset 0 -2px 0 0 alpha(@color2, 0.45); }
+#workspaces button:not(.active):nth-child(8)  { box-shadow: inset 0 -2px 0 0 alpha(@color2, 0.50); }
+#workspaces button:not(.active):nth-child(9)  { box-shadow: inset 0 -2px 0 0 alpha(@color2, 0.55); }
+#workspaces button:not(.active):nth-child(10) { box-shadow: inset 0 -2px 0 0 alpha(@color2, 0.60); }'
     return
   fi
 
@@ -51,11 +51,11 @@ compute_css() {
   local active_css nonfocused_css
   if [[ "$active_addr" == "$topleft_addr" ]]; then
     active_css='#workspaces button.active:not(.empty) {
-  border-bottom: 2px solid transparent;
+  border-bottom: 5px solid @background;
 }'
   else
     active_css='#workspaces button.active:not(.empty) {
-  border-bottom: 2px solid @accent;
+  border-bottom: 5px solid @background;
 }'
   fi
 

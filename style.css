@@ -31,11 +31,12 @@ window#waybar > box > box {
   min-width: 38px;
   padding: 0;
   margin: 0 3.5px;
+  margin-bottom: -5px;
   background-color: transparent;
   border-top: 2px solid transparent;
   border-left: 2px solid transparent;
   border-right: 2px solid transparent;
-  border-bottom: 2px solid transparent;
+  border-bottom: 5px solid transparent;
   box-shadow: none;
   font: inherit;
   color: @foreground;
@@ -80,7 +81,6 @@ window#waybar > box > box {
 }
 
 #workspaces button.active.empty {
-  border-bottom: 2px solid @accent;
   color: @foreground;
 }
 
